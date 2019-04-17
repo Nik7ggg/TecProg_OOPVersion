@@ -64,3 +64,14 @@ public:
 	void Output(ofstream &ofst); // вывод
 	bus() {} // создание без инициализации.
 };
+
+class passenger_car : public transport
+{
+private:
+	short int max_speed;
+public:
+	bool Input(ifstream &ifst); // ввод
+	void Output(ofstream &ofst); // вывод
+	passenger_car() {} // создание без инициализации.
+
+};
