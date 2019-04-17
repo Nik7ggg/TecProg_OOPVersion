@@ -15,6 +15,7 @@ public:
 	int Past_power();
 private:
 	int power;
+	float fuel_consumption;
 protected:
 	transport() {/**/ };
 	//transport *next;

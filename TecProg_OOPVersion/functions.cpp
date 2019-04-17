@@ -92,6 +92,7 @@ transport* transport::Transport_Input(ifstream &ifst)// в контейнеровском файле,
 bool transport::Input(ifstream & ifst)
 {
 	ifst >> power;
+	ifst >> fuel_consumption;
 	if (power > 0)
 		return true;
 	else
@@ -105,7 +106,8 @@ int transport::Past_power()
 
 void transport::Output(ofstream & ofst)
 {
-	ofst << ", power=" << power << endl;
+	ofst << ", power=" << power;
+	ofst << ", fuel consumption=" << fuel_consumption << endl;
 }
 
 
