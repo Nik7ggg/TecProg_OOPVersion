@@ -40,8 +40,7 @@ void container::Out(ofstream &ofst)
 		else
 		{
 			current->transport->Output(ofst);
-			//ofst << "The number of years that have passed since the year the language was created = "
-				//<< current->transport->Past_power << endl;
+
 		}
 		current = current->next;
 	}
@@ -105,7 +104,8 @@ int transport::Past_power()
 
 void transport::Output(ofstream & ofst)
 {
-	ofst << ", power=" << power << endl;
+	ofst << ", power=" << power;
+	ofst << ", ratation power=" << ProcessRatationPower()<<endl;
 }
 
 
@@ -126,6 +126,12 @@ void truck::Output(ofstream &ofst)
 	transport::Output(ofst);
 }
 
+int truck::ProcessRatationPower()
+{
+	
+	return (tonnage/Past_power());
+}
+
 
 bool bus::Input(ifstream &ifst)
 {
@@ -142,4 +148,9 @@ void bus::Output(ofstream &ofst)
 {
 	ofst << "It's bus: passengercapacity=" << passengercapacity;
 	transport::Output(ofst);
+}
+
+int bus::ProcessRatationPower()
+{
+	return (weightofman*passengercapacity)/Past_power();
 }

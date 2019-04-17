@@ -3,6 +3,8 @@
 #include "iostream"
 #include "fstream"
 
+const int weightofman=75;
+
 using namespace std;
 //Test vetky
 class transport
@@ -12,6 +14,7 @@ public:
 	static transport* Transport_Input(ifstream &ifst);				//Для ввода последующих эл-ов
 	virtual bool Input(ifstream &ifst);					// ввод с учетом типа объекта
 	virtual void Output(ofstream &ofst);		// вывод с учетом типа объекта
+	virtual int ProcessRatationPower() = 0 ;
 	int Past_power();
 private:
 	int power;
@@ -51,7 +54,7 @@ public:
 	// переопределяем интерфейс класса
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
-
+	int ProcessRatationPower();
 	truck() {} // создание без инициализации.
 };
 
@@ -62,5 +65,6 @@ public:
 	// переопределяем интерфейс класса
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
+	int ProcessRatationPower();
 	bus() {} // создание без инициализации.
 };

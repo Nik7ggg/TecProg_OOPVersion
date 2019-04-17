@@ -1,10 +1,10 @@
 Filled container. 
 Container contains 6 elements.
-1: It's bus: passengercapacity=2, power=3
-2: It's truck: tonnage=11, power=12
-3: It's truck: tonnage=14, power=15
-4: It's bus: passengercapacity=21, power=22
-5: It's bus: passengercapacity=25, power=26
-6: It's truck: tonnage=10, power=20
+1: It's bus: passengercapacity=2, power=3, ratation power=50
+2: It's truck: tonnage=11, power=12, ratation power=0
+3: It's truck: tonnage=14, power=15, ratation power=0
+4: It's bus: passengercapacity=21, power=22, ratation power=71
+5: It's bus: passengercapacity=25, power=26, ratation power=72
+6: It's truck: tonnage=10, power=20, ratation power=0
 Empty container. 
 Container contains 0 elements.
