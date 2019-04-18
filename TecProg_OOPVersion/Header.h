@@ -16,6 +16,7 @@ public:
 	virtual void Output(ofstream &ofst);		// вывод с учетом типа объекта
 	virtual int ProcessRatationPower() = 0 ;
 	int Past_power();
+	bool Compare(transport *other);
 private:
 	int power;
 protected:
@@ -38,7 +39,7 @@ private:
 public:
 
 	//transport *current;	//указатель на текущий элемент
-
+	void sort();
 	void In(ifstream &ifst);	//ввод матриц
 	void Out(ofstream &ofst);	//вывод матриц
 	

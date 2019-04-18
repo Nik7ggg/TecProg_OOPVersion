@@ -1,5 +1,7 @@
 #include "header.h"
 
+
+
 void container::In(ifstream &ifst)
 {
 	Node *temp;
@@ -102,6 +104,11 @@ int transport::Past_power()
 	return power;
 }
 
+bool transport::Compare(transport * other)
+{
+	return ProcessRatationPower()>other->ProcessRatationPower();
+}
+
 void transport::Output(ofstream & ofst)
 {
 	ofst << ", power=" << power;
@@ -153,4 +160,37 @@ void bus::Output(ofstream &ofst)
 int bus::ProcessRatationPower()
 {
 	return (weightofman*passengercapacity)/Past_power();
+}
+void container::sort()
+{
+	if (sizeoflist < 2)
+	{
+		return;
+	}
+
+	Node* current = head;
+
+	for (int i = 0; i < sizeoflist - 1; i++)
+	{
+		for (int k = 0; k < sizeoflist - 1; k++)
+		{
+			if (current->transport->Compare(current->next->transport))
+			{
+				Node *previously = head;
+
+				while (previously->next != head)
+					previously = previously->next;
+
+				Node *next1 = head->next;
+				Node *next2 = head->next->next;
+
+				head->next->next = head;
+				head->next = next2;
+				previously->next = next1;
+				head = next1;
+			}
+			head = head->next;
+		}
+		head = head->next;
+	}
 }
