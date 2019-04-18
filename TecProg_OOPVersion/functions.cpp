@@ -1,5 +1,28 @@
 #include "header.h"
 
+void container::Out_Truck(ofstream & ofst)
+
+{
+	Node *current = head;
+	ofst << "Container contains " << sizeoflist << " elements." << endl;
+
+	for (size_t i = 0; i < sizeoflist; i++)
+	{
+		ofst << i + 1 << ": ";
+		if (current->transport == NULL)
+		{
+			ofst << "Error reading data! Expected other values in the string." << endl;
+		}
+		else
+		{
+			current->transport->Out_Truck(ofst);
+			//ofst << "The number of years that have passed since the year the language was created = "
+			//<< current->transport->Past_power << endl;
+		}
+		current = current->next;
+	}
+}
+
 void container::In(ifstream &ifst)
 {
 	Node *temp;
@@ -103,6 +126,11 @@ int transport::Past_power()
 	return power;
 }
 
+void transport::Out_Truck(ofstream & ofst)
+{
+	ofst << endl;
+}
+
 void transport::Output(ofstream & ofst)
 {
 	ofst << ", power=" << power << endl;
@@ -121,6 +149,12 @@ bool  truck::Input(ifstream &ifst)
 }
 
 void truck::Output(ofstream &ofst)
+{
+	ofst << "It's truck: tonnage=" << tonnage;
+	transport::Output(ofst);
+}
+
+void truck::Out_Truck(ofstream & ofst)
 {
 	ofst << "It's truck: tonnage=" << tonnage;
 	transport::Output(ofst);

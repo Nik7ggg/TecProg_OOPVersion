@@ -13,6 +13,7 @@ public:
 	virtual bool Input(ifstream &ifst);					// ввод с учетом типа объекта
 	virtual void Output(ofstream &ofst);		// вывод с учетом типа объекта
 	int Past_power();
+	virtual void Out_Truck(ofstream &ofst);
 private:
 	int power;
 protected:
@@ -35,7 +36,7 @@ private:
 public:
 
 	//transport *current;	//указатель на текущий элемент
-
+	void Out_Truck(ofstream &ofst);
 	void In(ifstream &ifst);	//ввод матриц
 	void Out(ofstream &ofst);	//вывод матриц
 	
@@ -51,6 +52,7 @@ public:
 	// переопределяем интерфейс класса
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
+	void Out_Truck(ofstream &ofst);
 
 	truck() {} // создание без инициализации.
 };
