@@ -104,10 +104,10 @@ int transport::Past_power()
 	return power;
 }
 
-bool transport::Compare(transport * other)
+/*bool transport::Compare(transport * other)
 {
 	return ProcessRatationPower()>other->ProcessRatationPower();
-}
+}*/
 
 void transport::Output(ofstream & ofst)
 {
@@ -161,7 +161,7 @@ int bus::ProcessRatationPower()
 {
 	return (weightofman*passengercapacity)/Past_power();
 }
-void container::sort()
+/*void container::sort()
 {
 	if (sizeoflist < 2)
 	{
@@ -193,4 +193,4 @@ void container::sort()
 		}
 		head = head->next;
 	}
-}
+}*/

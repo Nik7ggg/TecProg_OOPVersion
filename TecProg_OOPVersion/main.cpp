@@ -20,8 +20,8 @@ int main(int argc, char* argv[])
 	container c;
 	c.In(ifst);
 	ofst << "Filled container. " << endl;
-	ofst << "Sorted container:" << endl;
-	c.sort();
+	//ofst << "Sorted container:" << endl;
+	//c.sort();
 	c.Out(ofst);
 	c.~container();//очистка контейнера
 	ofst << "Empty container. " << endl;
