@@ -14,7 +14,7 @@ public:
 	static transport* Transport_Input(ifstream &ifst);				//Для ввода последующих эл-ов
 	virtual bool Input(ifstream &ifst);					// ввод с учетом типа объекта
 	virtual void Output(ofstream &ofst);		// вывод с учетом типа объекта
-	virtual int ProcessRatationPower() = 0 ;
+	virtual float ProcessRatationPower() = 0 ;
 	int Past_power();
 	virtual void Out_Truck(ofstream &ofst);
 	bool Compare(transport *other);
@@ -60,7 +60,7 @@ public:
 	void Output(ofstream &ofst); // вывод
 	void Out_Truck(ofstream &ofst);
 
-	int ProcessRatationPower();
+	float ProcessRatationPower();
 	truck() {} // создание без инициализации.
 };
 
@@ -71,7 +71,7 @@ public:
 	// переопределяем интерфейс класса
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
-	int ProcessRatationPower();
+	float ProcessRatationPower();
 	bus() {} // создание без инициализации.
 };
 
@@ -82,6 +82,7 @@ private:
 public:
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
+	float ProcessRatationPower();
 	passenger_car() {} // создание без инициализации.
 
 };

@@ -184,11 +184,17 @@ void passenger_car::Output(ofstream &ofst)
 	transport::Output(ofst);
 }
 
+float passenger_car::ProcessRatationPower()
+{
+	float temp=(float)(weightofman * 5) / (float)Past_power();
+	return temp;
+}
 
-int truck::ProcessRatationPower()
+
+float truck::ProcessRatationPower()
 {
 	
-	return (tonnage/Past_power());
+	return ((float)tonnage/(float)Past_power());
 }
 
 
@@ -209,9 +215,9 @@ void bus::Output(ofstream &ofst)
 	transport::Output(ofst);
 }
 
-int bus::ProcessRatationPower()
+float bus::ProcessRatationPower()
 {
-	return (weightofman*passengercapacity)/Past_power();
+	return (float)(weightofman*passengercapacity)/(float)Past_power();
 }
 void container::sort()
 {
