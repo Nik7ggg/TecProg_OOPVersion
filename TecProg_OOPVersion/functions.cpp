@@ -63,8 +63,7 @@ void container::Out(ofstream &ofst)
 		else
 		{
 			current->transport->Output(ofst);
-			//ofst << "The number of years that have passed since the year the language was created = "
-				//<< current->transport->Past_power << endl;
+
 		}
 		current = current->next;
 	}
@@ -134,10 +133,16 @@ void transport::Out_Truck(ofstream & ofst)
 	ofst << endl;
 }
 
+bool transport::Compare(transport * other)
+{
+	return ProcessRatationPower()>other->ProcessRatationPower();
+}
+
 void transport::Output(ofstream & ofst)
 {
 	ofst << ", power=" << power;
-	ofst << ", fuel consumption=" << fuel_consumption << endl;
+	ofst << ", fuel consumtion=" << fuel_consumption << endl;
+	ofst << ", ratation power=" << ProcessRatationPower()<<endl;
 }
 
 
@@ -180,6 +185,13 @@ void passenger_car::Output(ofstream &ofst)
 }
 
 
+int truck::ProcessRatationPower()
+{
+	
+	return (tonnage/Past_power());
+}
+
+
 bool bus::Input(ifstream &ifst)
 {
 	ifst >> passengercapacity;
@@ -195,4 +207,42 @@ void bus::Output(ofstream &ofst)
 {
 	ofst << "It's bus: passengercapacity=" << passengercapacity;
 	transport::Output(ofst);
+}
+
+int bus::ProcessRatationPower()
+{
+	return (weightofman*passengercapacity)/Past_power();
+}
+void container::sort()
+{
+	if (sizeoflist < 2)
+	{
+		return;
+	}
+
+	Node* current = head;
+
+	for (int i = 0; i < sizeoflist - 1; i++)
+	{
+		for (int k = 0; k < sizeoflist - 1; k++)
+		{
+			if (current->transport->Compare(current->next->transport))
+			{
+				Node *previously = head;
+
+				while (previously->next != head)
+					previously = previously->next;
+
+				Node *next1 = head->next;
+				Node *next2 = head->next->next;
+
+				head->next->next = head;
+				head->next = next2;
+				previously->next = next1;
+				head = next1;
+			}
+			head = head->next;
+		}
+		head = head->next;
+	}
 }
