@@ -16,6 +16,7 @@ public:
 	virtual void Out_Truck(ofstream &ofst);
 private:
 	int power;
+	float fuel_consumption;
 protected:
 	transport() {/**/ };
 	//transport *next;
