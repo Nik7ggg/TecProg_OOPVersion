@@ -91,7 +91,7 @@ container::container()
 transport* transport::Transport_Input(ifstream &ifst)// в контейнеровском файле, как в процедурном стиле
 {
 
-	transport *temporary;	//¬ременные указатели
+	transport *temporary;	//временные указатели
 	int k;
 	ifst >> k;
 	switch (k) {
@@ -99,6 +99,8 @@ transport* transport::Transport_Input(ifstream &ifst)// в контейнеровском файле,
 		temporary = new truck; break;
 	case 2:
 		temporary = new bus; break;
+	case 3:
+		temporary = new passenger_car; break;
 	default:
 		return 0;
 	}
@@ -146,7 +148,16 @@ bool  truck::Input(ifstream &ifst)
 	{
 		return false;
 	}
+	return true;
+}
 
+bool  passenger_car::Input(ifstream &ifst)
+{
+	ifst >> max_speed;
+	if (!transport::Input(ifst))
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -159,6 +170,12 @@ void truck::Output(ofstream &ofst)
 void truck::Out_Truck(ofstream & ofst)
 {
 	ofst << "It's truck: tonnage=" << tonnage;
+	transport::Output(ofst);
+}
+
+void passenger_car::Output(ofstream &ofst)
+{
+	ofst << "It's passenger car: the biggest speed=" << max_speed;
 	transport::Output(ofst);
 }
 
