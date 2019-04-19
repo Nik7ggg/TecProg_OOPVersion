@@ -186,15 +186,16 @@ void passenger_car::Output(ofstream &ofst)
 
 float passenger_car::ProcessRatationPower()
 {
-	float temp=(float)(weightofman * 5) / (float)Past_power();
-	return temp;
+	return (float)(weightofman * 5) / (float)Past_power();
+	//return (weightofman * 5) / Past_power();
+	
 }
 
 
 float truck::ProcessRatationPower()
 {
-	
-	return ((float)tonnage/(float)Past_power());
+	return ((float)tonnage / (float)Past_power());
+	//return (tonnage/Past_power());
 }
 
 
@@ -218,6 +219,7 @@ void bus::Output(ofstream &ofst)
 float bus::ProcessRatationPower()
 {
 	return (float)(weightofman*passengercapacity)/(float)Past_power();
+	//return (weightofman*passengercapacity) / Past_power();
 }
 void container::sort()
 {
@@ -228,11 +230,11 @@ void container::sort()
 
 	Node* current = head;
 
-	for (int i = 0; i < sizeoflist - 1; i++)
+	for (int i = 0; i < sizeoflist-1; i++)
 	{
-		for (int k = 0; k < sizeoflist - 1; k++)
+		for (int k = 0; k < sizeoflist-1; k++)
 		{
-			if (current->transport->Compare(current->next->transport))
+			if (head->transport->Compare(head->next->transport))
 			{
 				Node *previously = head;
 
