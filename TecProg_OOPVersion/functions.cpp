@@ -2,13 +2,12 @@
 #include <string>
 #include <fstream>
 
-void container::Out_Truck(ofstream & ofst)
-
+void Container::OutTruck(ofstream & ofst)
 {
 	Node *current = head;
-	ofst << "Container contains " << sizeoflist << " elements." << endl;
+	ofst << "Container contains " << size_of_list << " elements." << endl;
 
-	for (size_t i = 0; i < sizeoflist; i++)
+	for (size_t i = 0; i < size_of_list; i++)
 	{
 		ofst << i + 1 << ": ";
 		if (current->transport == NULL)
@@ -17,43 +16,43 @@ void container::Out_Truck(ofstream & ofst)
 		}
 		else
 		{
-			current->transport->Out_Truck(ofst);
+			current->transport->OutTruck(ofst);
 		}
 		current = current->next;
 	}
 }
 
-void container::In(ifstream &ifst)
+void Container::In(ifstream &ifst)
 {
 	Node *temp;
 	Node *tail = NULL;
 	while (!ifst.eof())
 	{
 		temp = new Node;
-		temp->transport = transport::Transport_Input(ifst);
-		++sizeoflist;
+		temp->transport = Transport::TransportInput(ifst);
+		++size_of_list;
 
-		if (head == NULL)//
+		if (head == NULL)
 		{
 			temp->next = temp;
 			head = temp;
 			tail = temp;
 		}
-		else//порядок элементов будет отличаться, от процедурного
+		else
 		{
 			temp->next = head;
-			tail->next = temp;                    //Запись данных в следующее за последним элементом поле
-			tail = temp;                          //Последний активный элемент=только что созданный.
+			tail->next = temp;//Запись данных в следующее за последним элементом поле
+			tail = temp;//Последний активный элемент=только что созданный.
 		}
 	}
 }
 
-void container::Out(ofstream &ofst)
+void Container::Out(ofstream &ofst)
 {
 	Node *current = head;
-	ofst << "Container contains " << sizeoflist << " elements." << endl;
+	ofst << "Container contains " << size_of_list << " elements." << endl;
 
-	for (size_t i = 0; i < sizeoflist; i++)
+	for (size_t i = 0; i < size_of_list; i++)
 	{
 		ofst << i + 1 << ": ";
 		if (current->transport == NULL)
@@ -69,54 +68,61 @@ void container::Out(ofstream &ofst)
 	}
 }
 
-void container::Clear()
+void Container::Clear()
 {
-	while (sizeoflist != 0)                        //Пока размерность списка не станет нулевой
+	while (size_of_list != 0)                        //Пока размерность списка не станет нулевой
 	{
 		Node *temp = head->next;
 		delete head;                           //Освобождаем память от активного элемента
 		head = temp;                           //Смена адреса начала на адрес следующего элемента
-		sizeoflist--;                                //Один элемент освобожден. корректируем число элементов
+		size_of_list--;                                //Один элемент освобожден. корректируем число элементов
 	}
 
 }
 
-container::container()
+Container::Container()
 {
 	head = NULL;
-	sizeoflist = 0;
+	size_of_list = 0;
 }
 
-transport* transport::Transport_Input(ifstream &ifst)// в контейнеровском файле, как в процедурном стиле
+Transport* Transport::TransportInput(ifstream &ifst)// в контейнеровском файле, как в процедурном стиле
 {
-
-	transport *temporary;	//временные указатели
+	Transport *temporary;	//временные указатели
 	string temp;
 	ifst >> temp;
+
 	if (temp == "\0")
 	{
 		return NULL;
 	}
+
 	if (temp.length()  > 1)
 	{
 		ifst.get();
 		getline(ifst, temp, '\n');
 		return NULL;
 	}
+
 	if (!isdigit(int(unsigned char(temp.front()))))
 	{
 		ifst.get();
 		getline(ifst, temp, '\n');
 		return NULL;
 	}
+
 	int state = stoul(temp);
+
 	switch (state) {
 	case 1:
-		temporary = new truck; break;
+		temporary = new Truck; break;
+
 	case 2:
-		temporary = new bus; break;
+		temporary = new Bus; break;
+
 	case 3:
-		temporary = new passenger_car; break;
+		temporary = new PassengerCar; break;
+
 	default:
 		ifst.get();
 		getline(ifst, temp, '\n');
@@ -132,19 +138,22 @@ transport* transport::Transport_Input(ifstream &ifst)// в контейнеровском файле,
 	}
 }
 
-bool transport::Input(ifstream & ifst)
+bool Transport::Input(ifstream & ifst)
 {
 	string temp;
 	ifst >> temp;
+
 	if (temp == "\0")
 	{
 		return false;
 	}
+
 	if (temp.length() >= 4)
 	{
 		getline(ifst, temp, '\n');
 		return false;
 	}
+
 	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
 	{
 		if (!isdigit(int(unsigned char(*iter))))
@@ -153,6 +162,7 @@ bool transport::Input(ifstream & ifst)
 			return false;
 		}
 	}
+
 	power = stoul(temp);
 
 	ifst >> temp;
@@ -160,6 +170,7 @@ bool transport::Input(ifstream & ifst)
 	{
 		return false;
 	}
+
 	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
 	{
 		if (!isdigit(int(unsigned char(*iter))))
@@ -168,50 +179,71 @@ bool transport::Input(ifstream & ifst)
 			return false;
 		}
 	}
+
 	if (temp.length() >= 4)
 	{
 		getline(ifst, temp, '\n');
 		return false;
 	}
+
 	fuel_consumption = stoul(temp);
+
 	return true;
 }
 
-int transport::Past_power()
+int Transport::GetPower()
 {
 	return power;
 }
 
-void transport::Out_Truck(ofstream & ofst)
+void Transport::OutTruck(ofstream & ofst)
 {
 	ofst << endl;
 }
 
-bool transport::Compare(transport * other)
+bool Transport::Compare(Transport * other)
 {
+	if (this == NULL && other != NULL)
+	{
+		return true;
+	}
+
+	if (this != NULL && other == NULL)
+	{
+		return false;
+	}
+
+	if (this == NULL && other == NULL)
+	{
+		return false;
+	}
+
 	return ProcessRatationPower()>other->ProcessRatationPower();
 }
 
-void transport::Output(ofstream & ofst)
+void Transport::Output(ofstream & ofst)
 {
 	ofst << ", power=" << power;
-	ofst << ", fuel consumtion=" << fuel_consumption << endl;
+	ofst << ", fuel consumtion=" << fuel_consumption;
 	ofst << ", ratation power=" << ProcessRatationPower()<<endl;
 }
 
 
-bool  truck::Input(ifstream &ifst)
+bool  Truck::Input(ifstream &ifst)
 {
-	if (!transport::Input(ifst))
+	if (!Transport::Input(ifst))
 	{
 		return false;
 	}
+
 	string temp;
 	ifst >> temp;
+
 	if (temp == "\0")
 	{
 		return false;
 	}
+
 	if (!isdigit(int(unsigned char(temp.front()))))
 	{
 		getline(ifst, temp, '\n');
@@ -219,117 +251,147 @@ bool  truck::Input(ifstream &ifst)
 	}
 
 	tonnage = stoul(temp);
+
 	return true;
 }
 
-bool  passenger_car::Input(ifstream &ifst)
+bool  PassengerCar::Input(ifstream &ifst)
 {
-	if (!transport::Input(ifst))
+	if (!Transport::Input(ifst))
 	{
 		return false;
 	}
+
 	string temp;
 	ifst >> temp;
+
 	if (temp == "\0")
 	{
 		return false;
 	}
+
 	if (temp.length() >= 4)
 	{
 		getline(ifst, temp, '\n');
 		return false;
 	}
+
 	if (!isdigit(int(unsigned char(temp.front()))))
 	{
 		getline(ifst, temp, '\n');
 		return false;
 	}
+
 	max_speed = stoul(temp);
+
 	return true;
 }
 
-void truck::Output(ofstream &ofst)
+void Truck::Output(ofstream &ofst)
 {
 	ofst << "It's truck: tonnage=" << tonnage;
-	transport::Output(ofst);
+	Transport::Output(ofst);
 }
 
-void truck::Out_Truck(ofstream & ofst)
+void Truck::OutTruck(ofstream & ofst)
 {
 	ofst << "It's truck: tonnage=" << tonnage;
-	transport::Output(ofst);
+	Transport::Output(ofst);
 }
 
-void passenger_car::Output(ofstream &ofst)
+void PassengerCar::Output(ofstream &ofst)
 {
 	ofst << "It's passenger car: the biggest speed=" << max_speed;
-	transport::Output(ofst);
+	Transport::Output(ofst);
 }
 
-float passenger_car::ProcessRatationPower()
+float PassengerCar::ProcessRatationPower()
 {
-	return (float)(weightofman * 5) / (float)Past_power();
-	//return (weightofman * 5) / Past_power();
-	
+	if (GetPower() != 0)
+	{
+		return (float)(weightofman * 5) / (float)GetPower();
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 
-float truck::ProcessRatationPower()
+float Truck::ProcessRatationPower()
 {
-	return ((float)tonnage / (float)Past_power());
-	//return (tonnage/Past_power());
+	if (GetPower() != 0)
+	{
+		return ((float)tonnage / (float)GetPower());
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 
-bool bus::Input(ifstream &ifst)
+bool Bus::Input(ifstream &ifst)
 {
-	if (!transport::Input(ifst))
+	if (!Transport::Input(ifst))
 	{
 		return false;
 	}
+
 	string temp;
 	ifst >> temp;
+
 	if (temp == "\0")
 	{
 		return false;
 	}
+
 	if (temp.length() >= 4)
 	{
 		getline(ifst, temp, '\n');
 		return false;
 	}
+
 	if (!isdigit(int(unsigned char(temp.front()))))
 	{
 		getline(ifst, temp, '\n');
 		return false;
 	}
+
 	passengercapacity = stoul(temp);
+
 	return true;
 }
 
-void bus::Output(ofstream &ofst)
+void Bus::Output(ofstream &ofst)
 {
 	ofst << "It's bus: passengercapacity=" << passengercapacity;
-	transport::Output(ofst);
+	Transport::Output(ofst);
 }
 
-float bus::ProcessRatationPower()
+float Bus::ProcessRatationPower()
 {
-	return (float)(weightofman*passengercapacity)/(float)Past_power();
-	//return (weightofman*passengercapacity) / Past_power();
+	if (GetPower() != 0)
+	{
+		return (float)(weightofman*passengercapacity) / (float)GetPower();
+	}
+	else
+	{
+		return -1;
+	}
 }
-void container::sort()
+void Container::Sort()
 {
-	if (sizeoflist < 2)
+	if (size_of_list < 2)
 	{
 		return;
 	}
 
 	Node* current = head;
 
-	for (int i = 0; i < sizeoflist-1; i++)
+	for (int i = 0; i < size_of_list -1; i++)
 	{
-		for (int k = 0; k < sizeoflist-1; k++)
+		for (int k = 0; k < size_of_list -1; k++)
 		{
 			if (head->transport->Compare(head->next->transport))
 			{
