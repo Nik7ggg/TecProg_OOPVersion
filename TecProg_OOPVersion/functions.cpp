@@ -1,4 +1,6 @@
 #include "header.h"
+#include <string>
+#include <fstream>
 
 void container::Out_Truck(ofstream & ofst)
 
@@ -16,8 +18,6 @@ void container::Out_Truck(ofstream & ofst)
 		else
 		{
 			current->transport->Out_Truck(ofst);
-			//ofst << "The number of years that have passed since the year the language was created = "
-			//<< current->transport->Past_power << endl;
 		}
 		current = current->next;
 	}
@@ -91,9 +91,26 @@ transport* transport::Transport_Input(ifstream &ifst)// в контейнеровском файле,
 {
 
 	transport *temporary;	//временные указатели
-	int k;
-	ifst >> k;
-	switch (k) {
+	string temp;
+	ifst >> temp;
+	if (temp == "\0")
+	{
+		return NULL;
+	}
+	if (temp.length()  > 1)
+	{
+		ifst.get();
+		getline(ifst, temp, '\n');
+		return NULL;
+	}
+	if (!isdigit(int(unsigned char(temp.front()))))
+	{
+		ifst.get();
+		getline(ifst, temp, '\n');
+		return NULL;
+	}
+	int state = stoul(temp);
+	switch (state) {
 	case 1:
 		temporary = new truck; break;
 	case 2:
@@ -101,6 +118,8 @@ transport* transport::Transport_Input(ifstream &ifst)// в контейнеровском файле,
 	case 3:
 		temporary = new passenger_car; break;
 	default:
+		ifst.get();
+		getline(ifst, temp, '\n');
 		return 0;
 	}
 	if (!temporary->Input(ifst))
@@ -115,12 +134,47 @@ transport* transport::Transport_Input(ifstream &ifst)// в контейнеровском файле,
 
 bool transport::Input(ifstream & ifst)
 {
-	ifst >> power;
-	ifst >> fuel_consumption;
-	if (power > 0)
-		return true;
-	else
+	string temp;
+	ifst >> temp;
+	if (temp == "\0")
+	{
 		return false;
+	}
+	if (temp.length() >= 4)
+	{
+		getline(ifst, temp, '\n');
+		return false;
+	}
+	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
+	{
+		if (!isdigit(int(unsigned char(*iter))))
+		{
+			getline(ifst, temp, '\n');
+			return false;
+		}
+	}
+	power = stoul(temp);
+
+	ifst >> temp;
+	if (temp == "\0")
+	{
+		return false;
+	}
+	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
+	{
+		if (!isdigit(int(unsigned char(*iter))))
+		{
+			getline(ifst, temp, '\n');
+			return false;
+		}
+	}
+	if (temp.length() >= 4)
+	{
+		getline(ifst, temp, '\n');
+		return false;
+	}
+	fuel_consumption = stoul(temp);
+	return true;
 }
 
 int transport::Past_power()
@@ -148,21 +202,49 @@ void transport::Output(ofstream & ofst)
 
 bool  truck::Input(ifstream &ifst)
 {
-	ifst >> tonnage;
 	if (!transport::Input(ifst))
 	{
 		return false;
 	}
+	string temp;
+	ifst >> temp;
+	if (temp == "\0")
+	{
+		return false;
+	}
+	if (!isdigit(int(unsigned char(temp.front()))))
+	{
+		getline(ifst, temp, '\n');
+		return false;
+	}
+
+	tonnage = stoul(temp);
 	return true;
 }
 
 bool  passenger_car::Input(ifstream &ifst)
 {
-	ifst >> max_speed;
 	if (!transport::Input(ifst))
 	{
 		return false;
 	}
+	string temp;
+	ifst >> temp;
+	if (temp == "\0")
+	{
+		return false;
+	}
+	if (temp.length() >= 4)
+	{
+		getline(ifst, temp, '\n');
+		return false;
+	}
+	if (!isdigit(int(unsigned char(temp.front()))))
+	{
+		getline(ifst, temp, '\n');
+		return false;
+	}
+	max_speed = stoul(temp);
 	return true;
 }
 
@@ -201,12 +283,27 @@ float truck::ProcessRatationPower()
 
 bool bus::Input(ifstream &ifst)
 {
-	ifst >> passengercapacity;
 	if (!transport::Input(ifst))
 	{
 		return false;
 	}
-
+	string temp;
+	ifst >> temp;
+	if (temp == "\0")
+	{
+		return false;
+	}
+	if (temp.length() >= 4)
+	{
+		getline(ifst, temp, '\n');
+		return false;
+	}
+	if (!isdigit(int(unsigned char(temp.front()))))
+	{
+		getline(ifst, temp, '\n');
+		return false;
+	}
+	passengercapacity = stoul(temp);
 	return true;
 }
 
