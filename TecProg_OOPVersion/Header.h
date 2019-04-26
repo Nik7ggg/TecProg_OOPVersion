@@ -18,7 +18,10 @@ public:
 	int GetPower();
 	virtual void OutTruck(ofstream &ofst);
 	bool Compare(Transport *other);
-
+	virtual void MultyMethod(Transport *other,ofstream &ofst) = 0;
+	virtual void MMTruck(ofstream &ofst) = 0;
+	virtual void MMBus(ofstream &ofst) = 0;
+	virtual void MMPassengerCar(ofstream &ofst) = 0;
 private:
 	int power;
 	float fuel_consumption;
@@ -47,7 +50,7 @@ public:
 	void Sort();
 	void In(ifstream &ifst);//ввод матриц
 	void Out(ofstream &ofst);//вывод матриц
-	
+	void MultyMethod(ofstream &ofst);
 	Container();				//инициализация контейнера
 	~Container() { Clear(); };
 };
@@ -62,7 +65,10 @@ public:
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
 	void OutTruck(ofstream &ofst);
-
+	void MultyMethod(Transport *other, ofstream &ofst);
+	void MMTruck(ofstream &ofst);
+	void MMBus(ofstream &ofst);
+	void MMPassengerCar(ofstream &ofst);
 	float ProcessRatationPower();
 	Truck() {} // создание без инициализации.
 };
@@ -76,6 +82,10 @@ public:
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
 	float ProcessRatationPower();
+	void MultyMethod(Transport *other, ofstream &ofst);
+	void MMTruck(ofstream &ofst);
+	void MMBus(ofstream &ofst);
+	void MMPassengerCar(ofstream &ofst);
 	Bus() {} // создание без инициализации.
 };
 
@@ -89,6 +99,10 @@ public:
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
 	float ProcessRatationPower();
+	void MultyMethod(Transport *other, ofstream &ofst);
+	void MMTruck(ofstream &ofst);
+	void MMBus(ofstream &ofst);
+	void MMPassengerCar(ofstream &ofst);
 	PassengerCar() {} // создание без инициализации.
 
 };

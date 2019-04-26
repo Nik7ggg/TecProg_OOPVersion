@@ -413,3 +413,83 @@ void Container::Sort()
 		head = head->next;
 	}
 }
+
+void Container::MultyMethod(ofstream &fout)
+{
+	Node *current_first = head;
+	Node *current_second = current_first->next;
+
+	fout << "Multimethod." << endl;
+	for (size_t i = 0; i < size_of_list - 1; i++)
+	{
+		for (size_t j = i + 1; j < size_of_list; j++)
+		{
+			current_first->transport->MultyMethod(current_second->transport, fout);
+			current_first->transport->Output(fout);
+			current_second->transport->Output(fout);
+			current_second = current_second->next;
+		}
+		current_first = current_first->next;
+		current_second = current_first->next;
+	}
+
+}
+void Truck::MultyMethod(Transport *other, ofstream &fout)
+{
+	other->MMTruck(fout);
+}
+
+void Truck::MMTruck(ofstream &fout)
+{
+	fout << "Truck and Truck." << endl;
+}
+
+void Truck::MMBus(ofstream &fout)
+{
+	fout << "Bus and Truck." << endl;
+}
+
+void Truck::MMPassengerCar(ofstream &fout)
+{
+	fout << "Passenger car and Truck " << endl;
+}
+
+void Bus::MultyMethod(Transport *other, ofstream &fout)
+{
+	other->MMBus(fout);
+}
+
+void Bus::MMTruck(ofstream &fout)
+{
+	fout << "Truck and Bus." << endl;
+}
+
+void Bus::MMBus(ofstream &fout)
+{
+	fout << "Bus and Bus." << endl;
+}
+
+void Bus::MMPassengerCar(ofstream &fout)
+{
+	fout << "Passenger car and Bus." << endl;
+}
+
+void PassengerCar::MultyMethod(Transport *other, ofstream &fout)
+{
+	other->MMPassengerCar(fout);
+}
+
+void PassengerCar::MMTruck(ofstream &fout)
+{
+	fout << "Truck and Passenger car." << endl;
+}
+
+void PassengerCar::MMBus(ofstream &fout)
+{
+	fout << "Bus and Passenger car." << endl;
+}
+
+void PassengerCar::MMPassengerCar(ofstream &fout)
+{
+	fout << "Passenger car and Passenger car." << endl;
+}

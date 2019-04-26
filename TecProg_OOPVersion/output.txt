@@ -1,116 +1,28 @@
 Filled container. 
-Container contains 35 elements.
-1: Error reading data! Expected other values in the string.
-2: Error reading data! Expected other values in the string.
-3: It's truck: tonnage=1, power=900, fuel consumtion=987, ratation power=0.00111111
-4: It's truck: tonnage=9, power=800, fuel consumtion=987, ratation power=0.01125
-5: Error reading data! Expected other values in the string.
-6: Error reading data! Expected other values in the string.
-7: Error reading data! Expected other values in the string.
-8: Error reading data! Expected other values in the string.
-9: It's bus: passengercapacity=1, power=598, fuel consumtion=123, ratation power=0.125418
-10: It's bus: passengercapacity=2, power=798, fuel consumtion=123, ratation power=0.18797
-11: It's bus: passengercapacity=3, power=598, fuel consumtion=123, ratation power=0.376254
-12: It's bus: passengercapacity=4, power=398, fuel consumtion=123, ratation power=0.753769
-13: It's bus: passengercapacity=9, power=298, fuel consumtion=123, ratation power=2.2651
-14: It's bus: passengercapacity=0, power=198, fuel consumtion=123, ratation power=0
-15: Error reading data! Expected other values in the string.
-16: Error reading data! Expected other values in the string.
-17: Error reading data! Expected other values in the string.
-18: Error reading data! Expected other values in the string.
-19: It's passenger car: the biggest speed=1, power=502, fuel consumtion=679, ratation power=0.747012
-20: It's truck: tonnage=679, power=3, fuel consumtion=502, ratation power=226.333
-21: Error reading data! Expected other values in the string.
-22: Error reading data! Expected other values in the string.
-23: Error reading data! Expected other values in the string.
-24: Error reading data! Expected other values in the string.
-25: It's truck: tonnage=1, power=579, fuel consumtion=456, ratation power=0.00172712
-26: It's bus: passengercapacity=3, power=69, fuel consumtion=678, ratation power=3.26087
-27: It's bus: passengercapacity=1, power=800, fuel consumtion=940, ratation power=0.09375
-28: It's bus: passengercapacity=2, power=609, fuel consumtion=765, ratation power=0.246305
-29: It's passenger car: the biggest speed=1, power=501, fuel consumtion=87, ratation power=0.748503
-30: It's truck: tonnage=679, power=3, fuel consumtion=802, ratation power=226.333
-31: Error reading data! Expected other values in the string.
-32: It's truck: tonnage=0, power=200, fuel consumtion=2, ratation power=0
-33: It's bus: passengercapacity=2, power=101, fuel consumtion=3, ratation power=1.48515
-34: It's passenger car: the biggest speed=0, power=602, fuel consumtion=4, ratation power=0.622924
-35: Error reading data! Expected other values in the string.
+Container contains 4 elements.
+1: It's truck: tonnage=1, power=1, fuel consumtion=1, ratation power=1
+2: It's bus: passengercapacity=2, power=2, fuel consumtion=2, ratation power=75
+3: It's passenger car: the biggest speed=3, power=3, fuel consumtion=3, ratation power=125
+4: It's truck: tonnage=2, power=2, fuel consumtion=2, ratation power=1
 
-Sorted container:
-Container contains 35 elements.
-1: It's bus: passengercapacity=0, power=198, fuel consumtion=123, ratation power=0
-2: It's truck: tonnage=0, power=200, fuel consumtion=2, ratation power=0
-3: It's truck: tonnage=1, power=900, fuel consumtion=987, ratation power=0.00111111
-4: It's truck: tonnage=1, power=579, fuel consumtion=456, ratation power=0.00172712
-5: It's truck: tonnage=9, power=800, fuel consumtion=987, ratation power=0.01125
-6: It's bus: passengercapacity=1, power=800, fuel consumtion=940, ratation power=0.09375
-7: It's bus: passengercapacity=1, power=598, fuel consumtion=123, ratation power=0.125418
-8: It's bus: passengercapacity=2, power=798, fuel consumtion=123, ratation power=0.18797
-9: It's bus: passengercapacity=2, power=609, fuel consumtion=765, ratation power=0.246305
-10: It's bus: passengercapacity=3, power=598, fuel consumtion=123, ratation power=0.376254
-11: It's passenger car: the biggest speed=0, power=602, fuel consumtion=4, ratation power=0.622924
-12: It's passenger car: the biggest speed=1, power=502, fuel consumtion=679, ratation power=0.747012
-13: It's passenger car: the biggest speed=1, power=501, fuel consumtion=87, ratation power=0.748503
-14: It's bus: passengercapacity=4, power=398, fuel consumtion=123, ratation power=0.753769
-15: It's bus: passengercapacity=2, power=101, fuel consumtion=3, ratation power=1.48515
-16: It's bus: passengercapacity=9, power=298, fuel consumtion=123, ratation power=2.2651
-17: It's bus: passengercapacity=3, power=69, fuel consumtion=678, ratation power=3.26087
-18: It's truck: tonnage=679, power=3, fuel consumtion=502, ratation power=226.333
-19: It's truck: tonnage=679, power=3, fuel consumtion=802, ratation power=226.333
-20: Error reading data! Expected other values in the string.
-21: Error reading data! Expected other values in the string.
-22: Error reading data! Expected other values in the string.
-23: Error reading data! Expected other values in the string.
-24: Error reading data! Expected other values in the string.
-25: Error reading data! Expected other values in the string.
-26: Error reading data! Expected other values in the string.
-27: Error reading data! Expected other values in the string.
-28: Error reading data! Expected other values in the string.
-29: Error reading data! Expected other values in the string.
-30: Error reading data! Expected other values in the string.
-31: Error reading data! Expected other values in the string.
-32: Error reading data! Expected other values in the string.
-33: Error reading data! Expected other values in the string.
-34: Error reading data! Expected other values in the string.
-35: Error reading data! Expected other values in the string.
-
-Filter container:
-Container contains 35 elements.
-1: 
-2: It's truck: tonnage=0, power=200, fuel consumtion=2, ratation power=0
-3: It's truck: tonnage=1, power=900, fuel consumtion=987, ratation power=0.00111111
-4: It's truck: tonnage=1, power=579, fuel consumtion=456, ratation power=0.00172712
-5: It's truck: tonnage=9, power=800, fuel consumtion=987, ratation power=0.01125
-6: 
-7: 
-8: 
-9: 
-10: 
-11: 
-12: 
-13: 
-14: 
-15: 
-16: 
-17: 
-18: It's truck: tonnage=679, power=3, fuel consumtion=502, ratation power=226.333
-19: It's truck: tonnage=679, power=3, fuel consumtion=802, ratation power=226.333
-20: Error reading data! Expected other values in the string.
-21: Error reading data! Expected other values in the string.
-22: Error reading data! Expected other values in the string.
-23: Error reading data! Expected other values in the string.
-24: Error reading data! Expected other values in the string.
-25: Error reading data! Expected other values in the string.
-26: Error reading data! Expected other values in the string.
-27: Error reading data! Expected other values in the string.
-28: Error reading data! Expected other values in the string.
-29: Error reading data! Expected other values in the string.
-30: Error reading data! Expected other values in the string.
-31: Error reading data! Expected other values in the string.
-32: Error reading data! Expected other values in the string.
-33: Error reading data! Expected other values in the string.
-34: Error reading data! Expected other values in the string.
-35: Error reading data! Expected other values in the string.
-
+Multimethod.
+Truck and Bus.
+It's truck: tonnage=1, power=1, fuel consumtion=1, ratation power=1
+It's bus: passengercapacity=2, power=2, fuel consumtion=2, ratation power=75
+Truck and Passenger car.
+It's truck: tonnage=1, power=1, fuel consumtion=1, ratation power=1
+It's passenger car: the biggest speed=3, power=3, fuel consumtion=3, ratation power=125
+Truck and Truck.
+It's truck: tonnage=1, power=1, fuel consumtion=1, ratation power=1
+It's truck: tonnage=2, power=2, fuel consumtion=2, ratation power=1
+Bus and Passenger car.
+It's bus: passengercapacity=2, power=2, fuel consumtion=2, ratation power=75
+It's passenger car: the biggest speed=3, power=3, fuel consumtion=3, ratation power=125
+Bus and Truck.
+It's bus: passengercapacity=2, power=2, fuel consumtion=2, ratation power=75
+It's truck: tonnage=2, power=2, fuel consumtion=2, ratation power=1
+Passenger car and Truck 
+It's passenger car: the biggest speed=3, power=3, fuel consumtion=3, ratation power=125
+It's truck: tonnage=2, power=2, fuel consumtion=2, ratation power=1
 Empty container. 
 Container contains 0 elements.

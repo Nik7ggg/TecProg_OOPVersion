@@ -38,17 +38,10 @@ int main(int argc, char* argv[])
 	c.Out(ofst);
 	ofst << endl;
 
-	ofst << "Sorted container:" << endl;
-	c.Sort();
-	c.Out(ofst);
-	ofst << endl;
-
-	ofst << "Filter container:" << endl;
-	c.OutTruck(ofst);
-	c.~Container();//очистка контейнера
-	ofst << endl;
+	c.MultyMethod(ofst);
 
 	ofst << "Empty container. " << endl;
+	c.~Container();
 	c.Out(ofst);
 	cout << "Stop" << endl;
 
