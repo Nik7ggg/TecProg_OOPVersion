@@ -14,6 +14,9 @@ public:
 	virtual void Output(ofstream &ofst);		// вывод с учетом типа объекта
 	int Past_power();
 	virtual void Out_Truck(ofstream &ofst);
+	virtual void MultiMethod(transport *other, ofstream &ofst) = 0;
+	virtual void MMTruck(ofstream &ofst) = 0;
+	virtual void MMBus(ofstream &ofst) = 0;
 private:
 	int power;
 protected:
@@ -39,6 +42,7 @@ public:
 	void Out_Truck(ofstream &ofst);
 	void In(ifstream &ifst);	//ввод матриц
 	void Out(ofstream &ofst);	//вывод матриц
+	void MultiMethod(ofstream &ofst);
 	
 	container();				//инициализация контейнера
 	~container() { Clear(); };
@@ -53,7 +57,9 @@ public:
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
 	void Out_Truck(ofstream &ofst);
-
+	void MultiMethod(transport *other, ofstream &ofst);
+	void MMTruck(ofstream &ofst);
+	void MMBus(ofstream &ofst);
 	truck() {} // создание без инициализации.
 };
 
@@ -64,5 +70,8 @@ public:
 	// переопределяем интерфейс класса
 	bool Input(ifstream &ifst); // ввод
 	void Output(ofstream &ofst); // вывод
+	void MultiMethod(transport *other, ofstream &ofst);
+	void MMTruck(ofstream &ofst);
+	void MMBus(ofstream &ofst);
 	bus() {} // создание без инициализации.
 };

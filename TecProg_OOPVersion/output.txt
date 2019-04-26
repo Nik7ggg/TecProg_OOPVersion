@@ -1,10 +1,28 @@
 Filled container. 
-Container contains 6 elements.
-1: 
+Container contains 4 elements.
+1: It's bus: passengercapacity=2, power=3
 2: It's truck: tonnage=11, power=12
-3: It's truck: tonnage=14, power=15
-4: 
-5: 
-6: It's truck: tonnage=10, power=20
+3: It's truck: tonnage=14, power=16
+4: It's bus: passengercapacity=1, power=4
+
+Multimethod.
+Bus and Truck.
+It's bus: passengercapacity=2, power=3
+It's truck: tonnage=11, power=12
+Bus and Truck.
+It's bus: passengercapacity=2, power=3
+It's truck: tonnage=14, power=16
+Bus and Bus.
+It's bus: passengercapacity=2, power=3
+It's bus: passengercapacity=1, power=4
+Truck and Truck.
+It's truck: tonnage=11, power=12
+It's truck: tonnage=14, power=16
+Truck and Bus.
+It's truck: tonnage=11, power=12
+It's bus: passengercapacity=1, power=4
+Truck and Bus.
+It's truck: tonnage=14, power=16
+It's bus: passengercapacity=1, power=4
 Empty container. 
 Container contains 0 elements.

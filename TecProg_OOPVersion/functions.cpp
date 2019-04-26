@@ -177,3 +177,53 @@ void bus::Output(ofstream &ofst)
 	ofst << "It's bus: passengercapacity=" << passengercapacity;
 	transport::Output(ofst);
 }
+
+void container::MultiMethod(ofstream &fout)
+{
+	Node *current_first = head;
+	Node *current_second = current_first->next;
+
+	fout << "Multimethod." << endl;
+	for (size_t i = 0; i < sizeoflist - 1; i++)
+	{
+		for (size_t j = i + 1; j < sizeoflist; j++)
+		{
+			current_first->transport->MultiMethod(current_second->transport, fout);
+			current_first->transport->Output(fout);
+			current_second->transport->Output(fout);
+			current_second = current_second->next;
+		}
+		current_first = current_first->next;
+		current_second = current_first->next;
+	}
+
+}
+void truck::MultiMethod(transport *other, ofstream &fout)
+{
+	other->MMTruck(fout);
+}
+
+void truck::MMTruck(ofstream &fout)
+{
+	fout << "Truck and Truck." << endl;
+}
+
+void truck::MMBus(ofstream &fout)
+{
+	fout << "Bus and Truck." << endl;
+}
+
+void bus::MultiMethod(transport *other, ofstream &fout)
+{
+	other->MMBus(fout);
+}
+
+void bus::MMTruck(ofstream &fout)
+{
+	fout << "Truck and Bus." << endl;
+}
+
+void bus::MMBus(ofstream &fout)
+{
+	fout << "Bus and Bus." << endl;
+}
