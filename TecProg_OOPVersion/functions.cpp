@@ -135,7 +135,7 @@ void transport::Out_Truck(ofstream & ofst)
 
 bool transport::Compare(transport * other)
 {
-	return ProcessRatationPower()>other->ProcessRatationPower();
+	return ProcessRatationPower() > other->ProcessRatationPower();
 }
 
 void transport::Output(ofstream & ofst)
@@ -236,18 +236,23 @@ void container::sort()
 		{
 			if (head->transport->Compare(head->next->transport))
 			{
-				Node *previously = head;
+				if (sizeoflist > 2)
+				{
+					Node *previously = head;
 
-				while (previously->next != head)
-					previously = previously->next;
+					while (previously->next != head)
+						previously = previously->next;
 
-				Node *next1 = head->next;
-				Node *next2 = head->next->next;
+					Node *next1 = head->next;
+					Node *next2 = head->next->next;
 
-				head->next->next = head;
-				head->next = next2;
-				previously->next = next1;
-				head = next1;
+					head->next->next = head;
+					head->next = next2;
+					previously->next = next1;
+					head = next1;
+				}
+				else
+					head = head->next;
 			}
 			head = head->next;
 		}
