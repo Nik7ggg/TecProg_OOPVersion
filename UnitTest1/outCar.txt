@@ -1,1 +1,3 @@
-, full speed = 140, 
+
+It's passenger car: the biggest speed=140, power=2, fuel consumtion=5
+, ratation power=187.5

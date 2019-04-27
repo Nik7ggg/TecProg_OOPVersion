@@ -1,1 +1,3 @@
-, pass. capacity = 200, 
+
+It's bus: passengercapacity=200, power=5, fuel consumtion=5
+, ratation power=3000

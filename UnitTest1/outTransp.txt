@@ -1,0 +1,2 @@
+It's truck: tonnage=-842150451, power=-842150451, fuel consumtion=-4.31602e+08
+, ratation power=1

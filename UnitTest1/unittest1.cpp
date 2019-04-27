@@ -1,5 +1,10 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include <string>
+#include "functions.cpp"
+#include "main.cpp"
+#include "header.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -8,87 +13,180 @@ namespace UnitTest1
 	TEST_CLASS(UnitTest1)
 	{
 	public:
-		
-		TEST_METHOD(RatationPower)
+		TEST_METHOD(TestSort)
 		{
-			ifstream fin("E:\\Installed\\TexProg\\TecProg_ProcVersion\\UnitTest1\\InTruck.txt");
+			ofstream fout("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outSort.txt");
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\inputSort.txt");
+			container c;
+			c.In(fin);
+			c.sort();
+			c.Out(fout);
+			fout.close();
+			ifstream fin1("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\corS.txt");
+			ifstream fin2("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outSort.txt");
+			string expected;
+			getline(fin1, expected, '\0');
+			string actual;
+			getline(fin2, actual, '\0');
+			Assert::AreEqual(expected, actual);
+		}
+		TEST_METHOD(TestCompare)
+		{
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InTruck.txt");
+			ifstream fin2("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InBus.txt");
+			bool expected = false;
+			transport * actual = new truck;
+			transport * actual2 = new bus;
+			actual->Input(fin);
+			actual2->Input(fin2);
+			bool actualResult = actual->Compare(actual2);
+			Assert::AreEqual(expected, actualResult);
+		}
+		TEST_METHOD(RatationPowerTruck)
+		{
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InTruck.txt");
 			float expected = 50;
-			transport *actual;
-			actual = (transport*)InDataForTruck(fin);
-			actual->k = TRUCK;
-			actual->power = 200;
-			actual->fuel_consumption = 15;
-			float actualResult = ProcessRatationPower(actual);
+			transport * actual=new truck;
+			actual->Input(fin);
+			float actualResult = actual->ProcessRatationPower();
 			Assert::AreEqual(expected, actualResult);
 		}
-		TEST_METHOD(GetPass)
+		TEST_METHOD(RatationPowerBus)
 		{
-			//ifstream fin("E:\\Installed\\TexProg\\TecProg_ProcVersion\\UnitTest1\\InBus.txt");
-			int expected = 200;
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InBus.txt");
+			float expected = 3000;
+			transport * actual = new bus;
+			actual->Input(fin);
+			float actualResult = actual->ProcessRatationPower();
+			Assert::AreEqual(expected, actualResult);
+		}
+		TEST_METHOD(RatationPowerPassengerCar)
+		{
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InCar.txt");
+			float expected = 187.5;
+			transport * actual = new passenger_car;
+			actual->Input(fin);
+			float actualResult = actual->ProcessRatationPower();
+			Assert::AreEqual(expected, actualResult);
+		}
+		TEST_METHOD(GetPower)
+		{
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InBus.txt");
+			int expected = 5;
 			bus *actual = new bus;
-			//actual = (transport*)InDataForBus(fin);
-			actual->k = BUS;
-			actual->power = 0;
-			actual->fuel_consumption = 0;
-			actual->passengercapacity = 200;
-			int actualResult = GetPassengerCapasity((bus*)actual);
-			Assert::AreEqual(expected, actualResult);
+			actual->Input(fin);
+			int actualresult = actual->Past_power();
+			Assert::AreEqual(expected, actualresult);
 		}
-		TEST_METHOD(GetTon)
+		TEST_METHOD(InputTruck)
 		{
-			//ifstream fin("E:\\Installed\\TexProg\\TecProg_ProcVersion\\UnitTest1\\InTruck.txt");
-			int expected = 10000;
-			truck *actual = new truck;
-			//actual = (transport*)InDataForTruck(fin);
-			actual->k = TRUCK;
-			actual->power = 0;
-			actual->fuel_consumption = 0;
-			actual->tonnage = 10000;
-			int actualResult = GetTonnage((truck*)actual);
-			Assert::AreEqual(expected, actualResult);
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InTruck.txt");
+			int expected = 200;
+			transport * actual = new truck;
+			actual->Input(fin);
+			int actual_power = actual->Past_power();
+			Assert::AreEqual(expected, actual_power);
+			ifstream fin1("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\corT.txt");
+			ofstream fin2("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outTruck.txt");
+			actual->Out_Truck(fin2);
+			actual->Output(fin2);
+			fin2.close();
+			string expected2;
+			ifstream fout("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outTruck.txt");
+			getline(fin1, expected2, '\0');
+			string actual2;
+			getline(fout, actual2, '\0');
+			Assert::AreEqual(expected2, actual2);
 		}
-		TEST_METHOD(InTruck)
+		TEST_METHOD(InputBus)
 		{
-			ifstream fin("E:\\Installed\\TexProg\\TecProg_ProcVersion\\UnitTest1\\InTruck.txt");
-			truck expected;
-			expected.tonnage = 10000;
-			transport *actual;
-			truck *temp;
-			actual = (transport*)InDataForTruck(fin);
-			actual->k = TRUCK;
-			actual->power = 0;
-			actual->fuel_consumption = 0;
-			temp = (truck*)actual;
-			Assert::AreEqual(int(expected.tonnage), int(temp->tonnage));
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InBus.txt");
+			int expected = 5;
+			transport * actual = new bus;
+			actual->Input(fin);
+			int actual_power = actual->Past_power();
+			Assert::AreEqual(expected, actual_power);
+			ifstream fin1("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\corB.txt");
+			ofstream fin2("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outBus.txt");
+			actual->Out_Truck(fin2);
+			actual->Output(fin2);
+			fin2.close();
+			string expected2;
+			ifstream fout("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outBus.txt");
+			getline(fin1, expected2, '\0');
+			string actual2;
+			getline(fout, actual2, '\0');
+			Assert::AreEqual(expected2, actual2);
 		}
-		TEST_METHOD(InBus)
+		TEST_METHOD(InputPassenger_car)
 		{
-			ifstream fin("E:\\Installed\\TexProg\\TecProg_ProcVersion\\UnitTest1\\InBus.txt");
-			bus expected;
-			expected.passengercapacity = 200;
-			transport *actual;
-			bus *temp;
-			actual = (transport*)InDataForBus(fin);
-			actual->k = BUS;
-			actual->power = 0;
-			actual->fuel_consumption = 0;
-			temp = (bus*)actual;
-			Assert::AreEqual(expected.passengercapacity, temp->passengercapacity);
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\InCar.txt");
+			int expected = 2;
+			transport * actual = new passenger_car;
+			actual->Input(fin);
+			int actual_power = actual->Past_power();
+			Assert::AreEqual(expected, actual_power);
+			ifstream fin1("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\corC.txt");
+			ofstream fin2("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outCar.txt");
+			actual->Out_Truck(fin2);
+			actual->Output(fin2);
+			fin2.close();
+			string expected2;
+			ifstream fout("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outCar.txt");
+			getline(fin1, expected2, '\0');
+			string actual2;
+			getline(fout, actual2, '\0');
+			Assert::AreEqual(expected2, actual2);
 		}
-		TEST_METHOD(InCar)
+		TEST_METHOD(TestContainerInput)
 		{
-			ifstream fin("E:\\Installed\\TexProg\\TecProg_ProcVersion\\UnitTest1\\InCar.txt");
-			passenger_car expected;
-			expected.full_speed = 140;
-			transport *actual;
-			passenger_car *temp;
-			actual = (transport*)InDataForPassengerCar(fin);
-			actual->k = PASSENGER_CAR;
-			actual->power = 0;
-			actual->fuel_consumption = 0;
-			temp = (passenger_car*)actual;
-			Assert::AreEqual(expected.full_speed, temp->full_speed);
+			ofstream fout("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outContainer.txt");
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\input.txt");
+			container c;
+			c.In(fin);
+			c.Out(fout);
+			fout.close();
+			ifstream fin1("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\corContainer.txt");
+			ifstream fin2("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outContainer.txt");
+			string expected;
+			getline(fin1, expected, '\0');
+			string actual;
+			getline(fin2, actual, '\0');
+			Assert::AreEqual(expected, actual);
 		}
+		TEST_METHOD(TestTransportInput)
+		{
+			ofstream fout("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outTransp.txt");
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\inTruck.txt");
+			transport *c=new truck;
+			c->Transport_Input(fin);
+			c->Output(fout);
+			fout.close();
+			ifstream fin1("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\corTransp.txt");
+			ifstream fin2("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outTransp.txt");
+			string expected;
+			getline(fin1, expected, '\0');
+			string actual;
+			getline(fin2, actual, '\0');
+			Assert::AreEqual(expected, actual);
+		}
+		/*TEST_METHOD(TestOutTruck)
+		{
+			ofstream fout("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outSort.txt");
+			ifstream fin("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\inTruck.txt");
+			transport *c=new truck;
+			c->Input(fin);
+			fout.close();
+			ifstream fin1("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\corS.txt");
+			ifstream fin2("E:\\Installed\\TexProg\\TecProg_OOPVersion\\UnitTest1\\outSort.txt");
+			string expected;
+			getline(fin1, expected, '\0');
+			string actual;
+			getline(fin2, actual, '\0');
+			Assert::AreEqual(expected, actual);
+		}
+		
+		
 		TEST_METHOD(OutB)
 		{
 			ofstream fout("E:\\Installed\\TexProg\\TecProg_ProcVersion\\UnitTest1\\outBus.txt");
@@ -213,7 +311,7 @@ namespace UnitTest1
 			bool expected = false;
 			Assert::AreEqual(expected, actual);
 		}
-		/*TEST_METHOD(TestInit)
+		TEST_METHOD(TestInit)
 		{
 		container actual;
 		Init(actual);
@@ -224,7 +322,7 @@ namespace UnitTest1
 		//Assert::AreEqual(int(expected.Head), int(actual.Head));
 		//Assert::AreEqual(int(expected.len), int(actual.len));
 		Assert::AreEqual(expected.Tail, actual.Tail);
-		}*/
+		}
 		TEST_METHOD(OutOTruck)
 		{
 			ofstream fout("E:\\Installed\\TexProg\\TecProg_ProcVersion\\UnitTest1\\outOnlyTruck.txt");
@@ -241,7 +339,7 @@ namespace UnitTest1
 			string actual;
 			getline(fin2, actual, '\0');
 			Assert::AreEqual(expected, actual);
-		}
+		}*/
 
 	};
 }

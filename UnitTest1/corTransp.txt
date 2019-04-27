@@ -1,1 +1,2 @@
-It is bus: power = 200, Fuel_consumption=10, pass. capacity = 0, Ratation of power= 0
+It's truck: tonnage=-842150451, power=-842150451, fuel consumtion=-4.31602e+08
+, ratation power=1

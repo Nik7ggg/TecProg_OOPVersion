@@ -1,1 +1,4 @@
-, tonnage = 10000, 
+It's truck: tonnage=10000, power=200, fuel consumtion=5
+, ratation power=50
+It's truck: tonnage=10000, power=200, fuel consumtion=5
+, ratation power=50

@@ -1,7 +1,7 @@
 Filled container. 
 Container contains 13 elements.
-1: It's bus: passengercapacity=2, power=3, fuel consumtion=134
-, ratation power=50
+1: It's truck: tonnage=10000, power=2, fuel consumtion=3
+, ratation power=5000
 2: It's truck: tonnage=390, power=12, fuel consumtion=12
 , ratation power=32.5
 3: It's truck: tonnage=760, power=15, fuel consumtion=11.11
@@ -37,24 +37,24 @@ Container contains 13 elements.
 , ratation power=31.25
 4: It's truck: tonnage=390, power=12, fuel consumtion=12
 , ratation power=32.5
-5: It's bus: passengercapacity=2, power=3, fuel consumtion=134
+5: It's truck: tonnage=1000, power=20, fuel consumtion=13.23
 , ratation power=50
-6: It's truck: tonnage=1000, power=20, fuel consumtion=13.23
-, ratation power=50
-7: It's truck: tonnage=760, power=15, fuel consumtion=11.11
+6: It's truck: tonnage=760, power=15, fuel consumtion=11.11
 , ratation power=50.6667
-8: It's passenger car: the biggest speed=6, power=6, fuel consumtion=6
+7: It's passenger car: the biggest speed=6, power=6, fuel consumtion=6
 , ratation power=62.5
-9: It's bus: passengercapacity=21, power=22, fuel consumtion=5.985
+8: It's bus: passengercapacity=21, power=22, fuel consumtion=5.985
 , ratation power=71.5909
-10: It's bus: passengercapacity=25, power=26, fuel consumtion=30
+9: It's bus: passengercapacity=25, power=26, fuel consumtion=30
 , ratation power=72.1154
-11: It's bus: passengercapacity=3, power=3, fuel consumtion=3
+10: It's bus: passengercapacity=3, power=3, fuel consumtion=3
 , ratation power=75
-12: It's bus: passengercapacity=4, power=4, fuel consumtion=4
+11: It's bus: passengercapacity=4, power=4, fuel consumtion=4
 , ratation power=75
-13: It's passenger car: the biggest speed=5, power=5, fuel consumtion=5
+12: It's passenger car: the biggest speed=5, power=5, fuel consumtion=5
 , ratation power=75
+13: It's truck: tonnage=10000, power=2, fuel consumtion=3
+, ratation power=5000
 
 Filter:
 Container contains 13 elements.
@@ -65,16 +65,17 @@ Container contains 13 elements.
 3: 
 4: It's truck: tonnage=390, power=12, fuel consumtion=12
 , ratation power=32.5
-5: 
-6: It's truck: tonnage=1000, power=20, fuel consumtion=13.23
+5: It's truck: tonnage=1000, power=20, fuel consumtion=13.23
 , ratation power=50
-7: It's truck: tonnage=760, power=15, fuel consumtion=11.11
+6: It's truck: tonnage=760, power=15, fuel consumtion=11.11
 , ratation power=50.6667
+7: 
 8: 
 9: 
 10: 
 11: 
 12: 
-13: 
+13: It's truck: tonnage=10000, power=2, fuel consumtion=3
+, ratation power=5000
 Empty container. 
 Container contains 0 elements.

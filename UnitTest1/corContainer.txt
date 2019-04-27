@@ -1,0 +1,7 @@
+Container contains 3 elements.
+1: It's passenger car: the biggest speed=2, power=3, fuel consumtion=134
+, ratation power=125
+2: It's truck: tonnage=390, power=12, fuel consumtion=12
+, ratation power=32.5
+3: It's bus: passengercapacity=100, power=10, fuel consumtion=12
+, ratation power=750
